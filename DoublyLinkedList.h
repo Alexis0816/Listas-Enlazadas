@@ -217,18 +217,7 @@ public:
     }
   }
 
-  void sort()
-  {
-    // for (Node<T> *i = head; i != tail->next; i = i->next){
-    //   for (Node<T> *j = i->next; j != tail->next; j = j->next){
-    //     if (i->data > j->data){
-    //       int temp = i->data;
-    //       i->data = j->data;
-    //       j->data = temp;
-    //     }
-    //   }
-    // }
-  }
+  Nodo<T> *merge(Nodo<T> *left, Nodo<T> *right);
 
   void display()
   {
