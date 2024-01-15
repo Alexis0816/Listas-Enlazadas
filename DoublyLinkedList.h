@@ -10,20 +10,9 @@ struct Node
   Node<T> *prev;
 
   // inicializamos
-  Node()
-  {
-    data = 0;
-    next = nullptr;
-    prev = nullptr; // los punteros apuntan a nada
-  }
+  Node(T value = T()) : data(value), next(nullptr), prev(nullptr){}
 
-  Node(T value)
-  {
-    data = value;
-  }
-
-  void liberar()
-  {
+  void liberar(){
     delete next;
     delete prev; // liberamos memoria dinámica
   }
@@ -38,31 +27,22 @@ private:
   int nodes;
 
 public:
-  DoublyLinkedList()
-  {
-    head = nullptr;
-    tail = nullptr;
-    nodes = 0;
-  }
+  DoublyLinkedList() : head(nullptr), tail(nullptr), nodes(0){}
 
-  ~DoublyLinkedList()
-  {
+  ~DoublyLinkedList(){
     delete head;
     delete tail;
   }
 
-  T front()
-  {
+  T front(){
     return head->data;
   }
 
-  T back()
-  {
+  T back(){
     return tail->data;
   }
 
-  void push_front(T data)
-  {
+  void push_front(T data){
     auto *nuevo = new Node<T>{data};
     if (head == nullptr and tail == nullptr)
     {
