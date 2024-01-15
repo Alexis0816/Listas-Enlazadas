@@ -217,8 +217,6 @@ public:
     }
   }
 
-  Nodo<T> *merge(Nodo<T> *left, Nodo<T> *right);
-
   void display()
   {
     for (Node<T> *temp = head; temp != nullptr; temp = temp->next)
