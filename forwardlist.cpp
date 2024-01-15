@@ -167,11 +167,6 @@ void ForwardList<T>::clear()
 }
 
 template <typename T>
-void ForwardList<T>::sort()
-{
-}
-
-template <typename T>
 void ForwardList<T>::reverse()
 {
     if (empty() || !head->next)
@@ -204,4 +199,67 @@ std::ostream &operator<<(std::ostream &os, ForwardList<T> list)
     }
 
     return os;
+}
+
+template <typename T>
+Node<T> *ForwardList<T>::getMiddle(Node<T> *head)
+{
+    if (!head)
+    {
+        return nullptr;
+    }
+    auto slow = head;
+    auto fast = head->next;
+
+    while (fast && fast->next)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow;
+}
+
+template <typename T>
+Node<T> *ForwardList<T>::merge(Node<T> *left, Node<T> *right)
+{
+    if (!left || !right)
+    {
+        return !left ? right : left;
+    }
+
+    Node<T> *result = nullptr;
+    if (left->data <= right->data)
+    {
+        result = left;
+        result->next = merge(left->next, right);
+    }
+    else
+    {
+        result = right;
+        result->next = merge(left, right->next);
+    }
+    return result;
+}
+
+template <typename T>
+Node<T> *ForwardList<T>::mergeSort(Node<T> *head)
+{
+    if (!head || !head->next)
+    {
+        return head;
+    }
+    Node<T> *middleNode = getMiddle(head);
+    auto a = head;
+    auto b = middleNode->next;
+    middleNode->next = nullptr;
+
+    a = mergeSort(a);
+    b = mergeSort(b);
+    return merge(a, b);
+}
+
+template <typename T>
+void ForwardList<T>::sort()
+{
+    head = mergeSort(head);
 }

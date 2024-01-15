@@ -16,6 +16,9 @@ class ForwardList
 {
     int sz{};
     Node<T> *head{};
+    Node<T> *merge(Node<T> *left, Node<T> *right);
+    Node<T> *mergeSort(Node<T> *head);
+    Node<T> *getMiddle(Node<T> *head);
 
 public:
     ForwardList();
